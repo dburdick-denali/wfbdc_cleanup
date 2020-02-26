@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">VM10IS04</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAoYfd/R0ahEuSNe+xh92CWQAAAAACAAAAAAADZgAAwAAAABAAAAA59c52aKrSIKXTfbXrtDLUAAAAAASAAACgAAAAEAAAAI7psylOD0h5mgjiivttQ3SIAAAAvG4KNTxtObyWLZ15Fe1eg4EAJVOVJcnpE0SFL6Eamd94yIWDMegSBlH/frJZMBsZP7aSBf9RCDzIBnFuqxP1wPdrl5nH+7KBbdMsj5GTp+n/cT/o9dgkpT9iXRPx1In4d2c9Uj4BWFHr+GH2/ImHnjGJJ73JgnMLzWtTt/xtP5p8UypxQds1zxQAAAAJQBiriqzusVjz/C0dqHjh0UZg6g==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0htn8c9MPkuX44Z0n01J5gAAAAACAAAAAAADZgAAwAAAABAAAAB8zbrzEUy7noyUbVUv1IwEAAAAAASAAACgAAAAEAAAACFoTo8/pU5O6lKI4eqP6mKIAAAAj5xdr0OVYkD4Cz8nfikNa+hxN9YTBio3jp4RUWiZx3i55q6H7qIMqsS0wxHBC+PJziVpR6IhfxEREFY/GXbFNON7Mu3aQfs3Qw5c/MajGAnEBYi3hfNi6peD6TCrcgkIft9L6kzgK8OK6M8lI0UeRlbGY/qku4hrnOj5T5I5Lz6p/Qys8/HrGRQAAAD+GDjXdJm80CldtMpyoicEsQEQBA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,16 +42,31 @@
                 <SSIS:Property SSIS:Name="Name">WFBDCClean</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">17</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">19</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{AA14D201-C30D-410D-8D2F-6FF0D9D4B13B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F9F2461E-D8AE-4CD6-AE57-6D59F8F8FB74}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="CM.Current.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">\\FSA16\vendorsourcedata\IceData\Current</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.Flat File Connection Manager.AlwaysCheckForRowDelimiters">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">

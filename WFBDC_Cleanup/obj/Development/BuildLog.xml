@@ -2,13 +2,13 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>WFBDC_Cleanup</Name>
-    <LastWriteTime>2020-01-31T22:27:57.6969175Z</LastWriteTime>
+    <LastWriteTime>2020-02-26T18:10:34.8579605Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>WFBDCClean.dtsx</Name>
-      <LastWriteTime>2020-01-31T22:36:22.5408315Z</LastWriteTime>
+      <LastWriteTime>2020-02-26T18:10:34.8099606Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

@@ -11,11 +11,22 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="WFBDCClean"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{AA14D201-C30D-410D-8D2F-6FF0D9D4B13B}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{F9F2461E-D8AE-4CD6-AE57-6D59F8F8FB74}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Current]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{7205CA2D-38C5-4F25-A860-FE4738E7981E}"
+      DTS:ObjectName="Current">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="\\FSA16\vendorsourcedata\IceData\Current" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
       DTS:CreationName="FLATFILE"
@@ -1194,13 +1205,46 @@ where [refTable].[TICKER] = ? and [refTable].[CUSIP] = ?</property>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\File System Task"
+      DTS:refId="Package\Delete File"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{F2739EF1-F691-4ECD-A5B0-49487383205B}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete File"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="DeleteFile"
+          TaskSourcePath="{2FBCBF43-D42B-4F03-AD7B-6FFFA0F2B858}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Make Copy"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{6A4C8DEA-4401-481D-853A-7C3882F24CC0}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Make Copy"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="{C81D8837-1760-4AF3-8AD6-BC6CE0CD8C3F}"
+          TaskDestinationPath="{7205CA2D-38C5-4F25-A860-FE4738E7981E}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move File"
       DTS:CreationName="Microsoft.FileSystemTask"
       DTS:Description="File System Task"
       DTS:DTSID="{1D9D1139-3095-4429-B72B-BBCF2426DCA4}"
       DTS:ExecutableType="Microsoft.FileSystemTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="File System Task"
+      DTS:ObjectName="Move File"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -1210,22 +1254,6 @@ where [refTable].[TICKER] = ? and [refTable].[CUSIP] = ?</property>
           TaskSourcePath="User::FileToMove"
           TaskIsSourceVariable="True"
           TaskDestinationPath="WFBDC_Nightly" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\File System Task 1"
-      DTS:CreationName="Microsoft.FileSystemTask"
-      DTS:Description="File System Task"
-      DTS:DTSID="{F2739EF1-F691-4ECD-A5B0-49487383205B}"
-      DTS:ExecutableType="Microsoft.FileSystemTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="File System Task 1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <FileSystemData
-          TaskOperationType="DeleteFile"
-          TaskSourcePath="{2FBCBF43-D42B-4F03-AD7B-6FFFA0F2B858}" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1246,14 +1274,35 @@ where [refTable].[TICKER] = ? and [refTable].[CUSIP] = ?</property>
           Language="CSharp"
           ReadWriteVariables="User::FileToMove">
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_88e77c06e5e44066a504afddd2bfb555")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_88e77c06e5e44066a504afddd2bfb555")]
+[assembly: AssemblyCopyright("Copyright @  2020")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1650,35 +1699,14 @@ namespace ST_88e77c06e5e44066a504afddd2bfb555.Properties {
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_88e77c06e5e44066a504afddd2bfb555")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_88e77c06e5e44066a504afddd2bfb555")]
-[assembly: AssemblyCopyright("Copyright @  2020")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1877,12 +1905,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:From="Package\Script Task"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\File System Task" />
+      DTS:To="Package\Move File" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{8A843E33-E42F-41B8-9421-5A1C9E807C8C}"
-      DTS:From="Package\File System Task"
+      DTS:From="Package\Move File"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Data Flow Task" />
@@ -1893,7 +1921,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:From="Package\Data Flow Task"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\File System Task 1" />
+      DTS:To="Package\Delete File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{3A08BB1F-794A-4F6C-A4B0-70D4CA004A33}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Make Copy" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -1906,43 +1942,49 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="151,42"
           Id="Package\Data Flow Task"
-          TopLeft="339,163" />
+          TopLeft="174,161.75" />
         <NodeLayout
-          Size="158,42"
-          Id="Package\File System Task"
-          TopLeft="251,81" />
+          Size="128,54"
+          Id="Package\Delete File"
+          TopLeft="167,249.75" />
         <NodeLayout
-          Size="167,42"
-          Id="Package\File System Task 1"
-          TopLeft="453,276" />
+          Size="123,42"
+          Id="Package\Move File"
+          TopLeft="112,104.75" />
         <NodeLayout
           Size="131,42"
           Id="Package\Script Task"
-          TopLeft="100,25" />
+          TopLeft="46,30.75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="231,46">
+          TopLeft="111.5,72.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="99,35"
+              EndConnector="62,32"
               Start="0,0"
-              End="99,27.5">
+              End="62,24.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="95,0" />
+                    End="0,12" />
                   <mssgle:CubicBezierSegment
-                    Point1="95,0"
-                    Point2="99,0"
-                    Point3="99,4" />
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="4,16" />
                   <mssgle:LineSegment
-                    End="99,27.5" />
+                    End="58,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58,16"
+                    Point2="62,16"
+                    Point3="62,20" />
+                  <mssgle:LineSegment
+                    End="62,24.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1953,30 +1995,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="330,123">
+          TopLeft="235,125.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="84.5,40"
+              EndConnector="14.5,36"
               Start="0,0"
-              End="84.5,32.5">
+              End="14.5,28.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16" />
+                    End="10.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16"
-                    Point2="0,20"
-                    Point3="4,20" />
+                    Point1="10.5,0"
+                    Point2="14.5,0"
+                    Point3="14.5,4" />
                   <mssgle:LineSegment
-                    End="80.5,20" />
-                  <mssgle:CubicBezierSegment
-                    Point1="80.5,20"
-                    Point2="84.5,20"
-                    Point3="84.5,24" />
-                  <mssgle:LineSegment
-                    End="84.5,32.5" />
+                    End="14.5,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1987,30 +2023,56 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="414.5,205">
+          TopLeft="228.333333333333,203.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="122,71"
+              EndConnector="0,46"
               Start="0,0"
-              End="122,63.5">
+              End="0,38.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.5"
-                    Point2="0,35.5"
-                    Point3="4,35.5" />
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Make Copy"
+          TopLeft="340,251" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="273.333333333333,203.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131.666666666667,47.25"
+              Start="0,0"
+              End="131.666666666667,39.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="118,35.5" />
+                    End="0,15.197247706422" />
                   <mssgle:CubicBezierSegment
-                    Point1="118,35.5"
-                    Point2="122,35.5"
-                    Point3="122,39.5" />
+                    Point1="0,15.197247706422"
+                    Point2="0,19.197247706422"
+                    Point3="4,19.197247706422" />
                   <mssgle:LineSegment
-                    End="122,63.5" />
+                    End="127.666666666667,19.197247706422" />
+                  <mssgle:CubicBezierSegment
+                    Point1="127.666666666667,19.197247706422"
+                    Point2="131.666666666667,19.197247706422"
+                    Point3="131.666666666667,23.197247706422" />
+                  <mssgle:LineSegment
+                    End="131.666666666667,39.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2028,21 +2090,97 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="172,42"
+          Id="Package\Data Flow Task\Flat File Destination"
+          TopLeft="296.25,367" />
+        <NodeLayout
           Size="151,42"
           Id="Package\Data Flow Task\Flat File Source"
           TopLeft="205.75,54" />
         <NodeLayout
-          Size="113,42"
-          Id="Package\Data Flow Task\Lookup"
-          TopLeft="321.75,162" />
+          Size="181,42"
+          Id="Package\Data Flow Task\Flat File Destination 1"
+          TopLeft="587,180" />
         <NodeLayout
           Size="154,42"
           Id="Package\Data Flow Task\Derived Column"
           TopLeft="216.25,265" />
         <NodeLayout
-          Size="172,42"
-          Id="Package\Data Flow Task\Flat File Destination"
-          TopLeft="296.25,367" />
+          Size="113,42"
+          Id="Package\Data Flow Task\Lookup"
+          TopLeft="321.75,162" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="378.25,204">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-85,61"
+              Start="0,0"
+              End="-85,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="-4,30.5" />
+                  <mssgle:LineSegment
+                    End="-81,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-81,30.5"
+                    Point2="-85,30.5"
+                    Point3="-85,34.5" />
+                  <mssgle:LineSegment
+                    End="-85,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-90.69138671875,35.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Error Output]"
+          TopLeft="434.75,183">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="152.25,18"
+              Start="0,0"
+              End="144.75,18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="72.125,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72.125,0"
+                    Point2="76.125,0"
+                    Point3="76.125,4" />
+                  <mssgle:LineSegment
+                    End="76.125,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.125,14"
+                    Point2="76.125,18"
+                    Point3="80.125,18" />
+                  <mssgle:LineSegment
+                    End="144.75,18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="30.25861328125,-17.609375,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Flat File Source Output]"
           TopLeft="281.25,96">
@@ -2111,82 +2249,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
-          TopLeft="378.25,204">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-85,61"
-              Start="0,0"
-              End="-85,53.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.5"
-                    Point2="0,30.5"
-                    Point3="-4,30.5" />
-                  <mssgle:LineSegment
-                    End="-81,30.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-81,30.5"
-                    Point2="-85,30.5"
-                    Point3="-85,34.5" />
-                  <mssgle:LineSegment
-                    End="-85,53.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-90.69138671875,35.5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Data Flow Task\Flat File Destination 1"
-          TopLeft="587,180" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Lookup Error Output]"
-          TopLeft="434.75,183">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="152.25,18"
-              Start="0,0"
-              End="144.75,18">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="72.125,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="72.125,0"
-                    Point2="76.125,0"
-                    Point3="76.125,4" />
-                  <mssgle:LineSegment
-                    End="76.125,14" />
-                  <mssgle:CubicBezierSegment
-                    Point1="76.125,14"
-                    Point2="76.125,18"
-                    Point3="80.125,18" />
-                  <mssgle:LineSegment
-                    End="144.75,18" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="30.25861328125,-17.609375,91.7327734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2196,7 +2258,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2206,7 +2268,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
