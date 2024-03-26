@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DataTransformationsUserConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<DataTransformationsUserConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Configurations>
     <Configuration>
       <Name>Development</Name>
       <Options>
-        <ServerName>SSIS16</ServerName>
+        <AssessmentRuleSuppressionSetting />
+        <UseWinAuth>false</UseWinAuth>
+        <WinAuthUserName />
+        <WinAuthDomain />
+        <ServerName>WUS2-SQLPROD</ServerName>
         <PathOnServer>/SSISDB/Production/WFBDC_Cleanup</PathOnServer>
         <UserIDs />
         <UserPasswords />
